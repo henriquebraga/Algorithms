@@ -19,6 +19,7 @@ def getMoneySpent(keyboards, drives, b):
     * Iterate over them, but not checking past drives, since keyboard is already greater than b.
     * Performance: O(n log(n))
     """
+
     keyboards.sort(reverse=True)
     drives.sort()
     best_target = -1
