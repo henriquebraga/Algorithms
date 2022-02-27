@@ -75,22 +75,18 @@ class LinkedList:
     def reverse(self):
 
         if self.head.next is None:
-            return sel
-        nodes = []
+            return
 
-        current_node = self.head
-
-        while current_node:
-            nodes.append(current_node.value)
-            current_node = current_node.next
-
-        reversed_linked_list = LinkedList(value=Node(nodes[-1]))
-
-        for node in reversed(nodes[:-1]):
-            reversed_linked_list.append(node)
-
-        return reversed_linked_list
-
+        previous = None
+        current = self.head
+        # NULL <- 1 2 3
+        
+        while current is not None:
+            _next = current.next
+            current.next = previous
+            previous = current
+            current = _next
+        self.head = previous
 
     def _traverse(self, index):
         counter = 0
@@ -166,7 +162,9 @@ if __name__ == '__main__':
     assert len(linked_list) == 2
 
 
-    # Validating reverse behaviour
+    # Validating reverse behaviour.
+
+    #Should reverse linked_list from 1 -> 2 -> 3 -> 4 -> 5 to 5 -> 4 -> 3 -> 2 -> 1
 
     linked_list = LinkedList(Node(1))
 
@@ -175,4 +173,6 @@ if __name__ == '__main__':
     linked_list.append(4)
     linked_list.append(5)
 
-    assert repr(linked_list.reverse()) == '< LinkedList 5 -> 4 -> 3 -> 2 -> 1 -> None >'
+    linked_list.reverse()
+
+    assert repr(linked_list) == '< LinkedList 5 -> 4 -> 3 -> 2 -> 1 -> None >'
