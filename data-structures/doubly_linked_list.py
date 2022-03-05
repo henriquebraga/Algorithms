@@ -48,11 +48,11 @@ class DoublyLinkedList:
         node = Node(value)
         leader_node = self._traverse(index - 1)
 
-        node.previous = lead_node
-        node.next = lead_node.next
+        node.previous = leader_node
+        node.next = leader_node.next
 
-        lead_node.next.previous = node
-        lead_node.next = node
+        leader_node.next.previous = node
+        leader_node.next = node
 
         self.length += 1
 
@@ -77,7 +77,7 @@ class DoublyLinkedList:
 
         if index > (len(self) // 2): #if bigger than half, we traverse starting in previous
             current_node = self.tail
-            moves = (len(self) - 1) - index # here we just figure out how many times to traverse given we start at the end. We use the length -1, because the index is zero based.
+            moves = (self.length - 1) - index # here we just figure out how many times to traverse given we start at the end. We use the length -1, because the index is zero based.
 
             while moves > 0:
                 current_node = current_node.previous
@@ -174,5 +174,3 @@ if __name__ == '__main__':
     #remove behavior
 
     doubly_linked_list.remove(0)
-
-    import pdb; pdb.set_trace()
