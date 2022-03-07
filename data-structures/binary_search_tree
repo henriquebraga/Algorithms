@@ -1,0 +1,55 @@
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None #must be < than its value
+        self.right = None #must be >= than its value
+
+
+class BinarySearchTree:
+
+    def __init__(self):
+        self.root = None
+
+    def insert(self, value):
+        if self.root is None:
+            self.root = Node(value)
+        else:
+            current = self.root
+
+            while current:
+                if value < current.value and current.left is None:
+                    current.left = Node(value)
+                    break
+                if value >= current.value and current.right is None:
+                    current.right = Node(value)
+                    break
+
+                if value < current.value:
+                    current = current.left
+
+                if value >= current.value:
+                    current = current.right
+                
+
+if __name__ == '__main__':
+    bst = BinarySearchTree()
+
+    bst.insert(34)
+
+    assert bst.root.value == 34
+    
+    bst.insert(28)
+
+    assert bst.root.left.value == 28
+
+    bst.insert(65)
+
+    assert bst.root.right.value == 65
+
+    bst.insert(15)
+
+    assert bst.root.left.left.value == 15
+
+    bst.insert(97)
+
+    assert bst.root.right.right.value == 97
