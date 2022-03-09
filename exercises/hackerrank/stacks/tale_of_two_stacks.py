@@ -1,9 +1,17 @@
+"""
+Keep two stacks, one for newer items (when insert, just put at the top of the stack)
+Another for older items (which will work like a queue)
+
+Here's the thing: you don't need always pop values from one stack to another whenever occurs a peek or enqueue.
+Snapshot while the old queue (working like a stack) to pop/peek items.
+when it's empty, just pop from newer stack to the older.
+"""
+
 class MyQueue(object):
     def __init__(self):
         self.newer_on_top_stack = []
         self.older_on_top_stack = []
         
-    
     def peek(self):
         if len(self.older_on_top_stack) == 0:
             while len(self.newer_on_top_stack) > 0:
