@@ -6,7 +6,7 @@ import random
 import re
 import sys
 
-
+from heapq import heappush, heappop, heapify 
 #
 # Complete the 'getMax' function below.
 #
@@ -15,11 +15,6 @@ import sys
 #
 
 def getMax(operations):
-    """
-       Idea is when whe push into stack, also push the max value at that point.
-       So, when we pop, if the stack gets empty, we reset the max. Otherwise, we peek the last max_value as the new max.
-        Performance is O(1), because just push/pop
-    """
     stack = []
     max_value = -1
     max_values = []
@@ -39,15 +34,15 @@ def getMax(operations):
                 max_value = int(el)
             stack.append({'max': max_value, 'element': el})
         if op == '2':
-            if len(stack) > 0:
-                stack.pop()
+            # if len(stack) > 0:
+            #     stack.pop()
             
             if len(stack) == 0: #if stack is empty, reset max_value
                 max_value = -1
             else:
-                max_value = stack[-1]['max'] #otherwise, we reset max_value to the new top element.
+                max_value = stack[-1]['max']
     
-        if op == '3': #just append max from top of the stack
+        if op == '3':
             max_values.append(stack[-1]['max'])
             
     return max_values
